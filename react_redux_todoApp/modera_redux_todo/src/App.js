@@ -8,6 +8,7 @@ function App() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
+  // 
   const list = useSelector((state) => state.todoReducer.list);
 
   const handleClick = () => {
@@ -34,11 +35,25 @@ function App() {
 
         {list.map((data) => {
           return (
-          <div style={{ display: "flex", margin: "5px" }} key={data.id}>
-            <p style={{ width: "30rem", textAlign: "left" }}> {data.data} </p>
-            <button className="button is-danger" onClick={() => dispatch(deleteTodo(data.id))} >X</button>
-          </div>)
+            <div style={{ display: "flex", margin: "5px" }} key={data.id}>
+              <p style={{ width: "30rem", textAlign: "left" }}> {data.data} </p>
+
+              <button
+                className="button is-danger"
+                onClick={() => dispatch(deleteTodo(data.id))}
+              >
+                X
+              </button>
+            </div>
+          );
         })}
+
+        <button
+          className="button is-danger is-outlined"
+          onClick={() => dispatch(removeTodo())}
+        >
+          Delete
+        </button>
       </header>
     </div>
   );
